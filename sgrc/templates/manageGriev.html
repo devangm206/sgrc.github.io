@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Redressal Program</title>
+        <link rel="preconnect" href="{ % static 'https://fonts.googleapis.com' %}">
+        <link rel="preconnect" href="{% static 'https://fonts.gstatic.com' %}" crossorigin>
+        <link href="{% static 'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <script src="{% static 'https://kit.fontawesome.com/ff14115f99.js' %}" crossorigin="anonymous"></script>
+     </head>
+
+<body>
+
+    <section class="Sub-header">
+        <nav>
+            <a href="{% url 'facgrievpage' %}"><img src="{% static 'images/logo (1).png' %}"></a>
+            <div class="nav-links">
+            <i class="fa fa-times" ></i>
+            <ul><li class="name-head"><a>WELCOME, {{request.user}}</a></li></ul>
+            <ul>
+             <li><a href="{% url 'homepage' %}">HOME</a></li>
+             <li><a href="{% url 'aboutuspage' %}">ABOUT</a></li>
+             <li><a href="{% url 'contactuspage' %}">CONTACT</a></li>
+             <li><a href="{% url 'selectlogintype'%}">Logout</a></li>
+            <li></li>
+            </ul>
+            </div>
+            <i class="fa fa-bars"></i>
+        </nav>
+    <h1>Manage Grievances</h1>
+    </section>
+    <section class="Facultydata">
+        <div class="mainbox">
+       <style >
+              table 
+              {
+                border: 1px solid black;
+                font-size:15px;
+                width:50%;
+                 
+                 
+                }
+                table.center {
+                               margin-left: auto; 
+                               margin-right: auto;
+                              }
+
+               th, td 
+               { 
+                 text-align: left;
+                 padding: 8px;
+                }
+
+                 tr:nth-child(even){background-color: #f2f2f2}
+
+                 th 
+                 {
+                   background-color: #04AA6D;
+                   color:black;
+                   font-size:"50";
+                   }
+         </style>
+    <div>
+        <div>
+            <h2><center>Manage Your Grievances Here </h2>
+            <h3>Your Total Grievances: {{data_form_stu|length}}</h3>
+            <h3></h3>
+            <table class="center">  
+                <thead>
+                    <tr text-align="justify">
+                        <th>ID</th>
+                        <th>Grievance</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                        <th>Solution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr text-align="justify">
+                        {% for i in data_form_stu %}
+                            <td padding:10px>{{forloop.counter}}</td>
+                            <td>{{i.grievance}}</td>
+                            <td>{{i.date_time}}</td>
+                            <td>{{i.status}}</td>
+                        {% for i in data_from_fac%}
+                            <td>{{i.solution}}</td>
+                            {% endfor %}
+                             </div>
+                            </div>
+                             </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </section>
+
+<!--- Footer -->
+<section class="footer">
+    <h4>About Us</h4>
+    <p>A Grievance is any discontent or dissatisfaction, whether expressed or not, 
+        whether valid or not, arising out of anything that is <br>directly connected to the institute, 
+        and which a student thinks, believes, or even feels, is unfair, unjust or inequitable.</p>
+        
+        <div class="icons">
+            <i class="fa fa-facebook-square"></i>
+            <i class="fa fa-twitter-square"></i>
+            <i class="fa fa-linkedin-square"></i>
+            <i class="fa fa-instagram"></i>
+        </div>
+        <p>Made with<i class="fa fa-heart"></i><br>by Team</p>
+        <p>COPYRIGHT 2021</p>
+ </section>
+ 
+ <!---JavaScript for Toggle Menu-->
+ <script>
+      var navLinks = document.getElementById("navLinks");
+ 
+      function showMenu(){
+          navLinks.style.right = "0";
+      }
+      function hideMenu(){
+          navLinks.style.right = "-200";
+      }
+    </script>
+</body>
